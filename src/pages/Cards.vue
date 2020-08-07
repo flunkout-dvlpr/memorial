@@ -2,7 +2,6 @@
   <q-page>
     <div class="q-pa-md fit row  justify-center  content-center">
       <q-btn outline color="primary" label="Add Memory" @click="addDialog = true"/>
-
       <q-dialog
         v-model="addDialog"
         persistent
@@ -35,8 +34,18 @@
             />
           </q-card-section>
 
+          <q-uploader
+            style="max-width: 300px"
+            url="http://localhost:4444/upload"
+            label="Restricted to images"
+            multiple
+            accept=".jpg, image/*"
+            @rejected="onRejected"
+          />
+
           <q-card-actions align="right" class="bg-white text-primary">
-            <q-btn flat label="Add"  @click="addMemory()" />
+            <q-btn flat label="Cancel" @click="resetNewMemory()" />
+            <q-btn flat label="Add" @click="addNewMemory()" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -82,7 +91,16 @@ export default {
     }
   },
   methods: {
-    addMemory () {
+    resetNewMemory () {
+      this.addDialog = false
+      this.newMemory = {
+        title: '',
+        author: '',
+        message: ''
+      }
+      this.filesImages = null
+    },
+    addNewMemory () {
       this.addDialog = false
       this.memories.push(this.newMemory)
       this.newMemory = {
@@ -90,6 +108,7 @@ export default {
         author: '',
         message: ''
       }
+      this.filesImages = null
     }
   }
 }
