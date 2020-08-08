@@ -1,9 +1,12 @@
 <template>
   <q-page>
     <div class="q-pa-md fit row  justify-center  content-center">
-      <q-btn outline color="primary" label="Add Memory" @click="addDialog = true"/>
+      <q-btn outline class="q-mx-sm" color="primary" label="Add Memory" @click="addMemory = true" />
+      <q-btn outline class="q-mx-sm" color="primary" label="Add Image" @click="addImage = true" />
+    </div>
+    <div class="q-pa-md fit row  justify-center  content-center">
       <q-dialog
-        v-model="addDialog"
+        v-model="addMemory"
         persistent
       >
         <q-card style="width: 300px">
@@ -18,7 +21,36 @@
             <q-input outlined v-model="newMemory.author" label="Author" />
           </q-card-section>
           <q-card-section class="q-pt-none">
-            <q-input outlined v-model="newMemory.message" label="Message"  type="textarea" />
+            <q-input
+              outlined
+              bottom-slots
+              v-model="newMemory.message"
+              label="Message"
+              type="textarea"
+              counter
+              maxlength="300"
+              :dense="dense"
+            >
+              <template v-slot:hint>
+                Text limit
+              </template>
+            </q-input>
+          </q-card-section>
+
+          <q-card-actions align="right" class="bg-white text-primary">
+            <q-btn flat label="Cancel" @click="resetNewMemory()" />
+            <q-btn flat label="Add" @click="submitMemory()" />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
+
+      <q-dialog
+        v-model="addImage"
+        persistent
+      >
+        <q-card style="width: 300px">
+          <q-card-section>
+            <div class="text-h6">Add Image</div>
           </q-card-section>
 
           <q-card-section class="q-pt-none">
@@ -27,7 +59,7 @@
               v-model="filesImages"
               filled
               outlined
-              label="Restricted to images"
+              label="Select Image"
               multiple
               accept=".jpg, image/*"
               @rejected="onRejected"
@@ -37,15 +69,15 @@
           <q-uploader
             style="max-width: 300px"
             url="http://localhost:4444/upload"
-            label="Restricted to images"
+            label="Select Image"
             multiple
             accept=".jpg, image/*"
             @rejected="onRejected"
           />
 
           <q-card-actions align="right" class="bg-white text-primary">
-            <q-btn flat label="Cancel" @click="resetNewMemory()" />
-            <q-btn flat label="Add" @click="addNewMemory()" />
+            <q-btn flat label="Cancel" @click="resetNewImage()" />
+            <q-btn flat label="Add" @click="submitImage()" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -80,7 +112,8 @@ export default {
   name: 'Cards',
   data () {
     return {
-      addDialog: false,
+      addMemory: false,
+      addImage: false,
       filesImages: null,
       newMemory: {
         title: '',
@@ -92,7 +125,20 @@ export default {
   },
   methods: {
     resetNewMemory () {
-      this.addDialog = false
+      this.addMemory = false
+      this.newMemory = {
+        title: '',
+        author: '',
+        message: ''
+      }
+    },
+    resetNewImage () {
+      this.addImage = false
+      this.filesImages = null
+    },
+    submitMemory () {
+      this.addMemory = false
+      this.memories.push(this.newMemory)
       this.newMemory = {
         title: '',
         author: '',
@@ -100,14 +146,9 @@ export default {
       }
       this.filesImages = null
     },
-    addNewMemory () {
-      this.addDialog = false
-      this.memories.push(this.newMemory)
-      this.newMemory = {
-        title: '',
-        author: '',
-        message: ''
-      }
+    submitImage () {
+      this.addImage = false
+      console.log(this.filesImages)
       this.filesImages = null
     }
   }
