@@ -147,6 +147,7 @@ export default {
     },
     submitMemory () {
       this.addMemory = false
+      print(this.newMemory)
       return this.$axios.post('memory/add', this.newMemory).then((response) => {
         if (response.data.type === 'success') {
           this.memories.push(response.data.payload)
@@ -172,6 +173,14 @@ export default {
       this.addImage = false
       this.filesImages = null
     }
+  },
+  created () {
+    return this.$axios.get('memory/get').then((response) => {
+      if (response.data.type === 'success') {
+        this.memories = response.data.payload
+        console.log(response.data.payload)
+      }
+    })
   }
 }
 </script>
