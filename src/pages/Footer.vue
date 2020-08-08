@@ -19,7 +19,7 @@
             name="stream"
             icon="ion-videocam"
             label="stream"
-            @click="goToLink('https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.oneroomstreaming.com%2Fview%2Fauthorise.php%3Fk%3D159675495071092%26fbclid%3DIwAR2Tj3NR3TsKeqhFvIpot7eclDu4TW2FKetRuyuJVeIrEs_4pEik6AYX_SM&h=AT0yZ0vqsMgwmV0wEs7lsMtspToXsDPNxSS87g0Oqmxp8lpumHGB2T1XOw14TeX0BuvItR7NWvdtGk_6KyuweVmRN6t-0_7KWyR1qtKX-Al8Rg_FJSZdq4ZKxIol9y85Qs_YgmehfA&__tn__=%2CmH-R&c[0]=AT2ZOAsOMTsghP7DwPbur9NT0p9rMJjPolCm83yzjAZOjcrSWh57sOVHJupnhBTBxLeJgcuD-f_HT7AqBwBAtlaLKy2e4u3FnfQcmS96X4l1OD0u86eAwOFGmw4ybDrnPvI9vOSE')"
+            @click="goToLink('https://www.oneroomstreaming.com/view/authorise.php?k=159675495071092')"
             class="q-mx-md"
           />
 
@@ -52,7 +52,7 @@
             name="stream"
             icon="ion-videocam"
             label="stream"
-            @click="goToLink('https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.oneroomstreaming.com%2Fview%2Fauthorise.php%3Fk%3D159675495071092%26fbclid%3DIwAR2Tj3NR3TsKeqhFvIpot7eclDu4TW2FKetRuyuJVeIrEs_4pEik6AYX_SM&h=AT0yZ0vqsMgwmV0wEs7lsMtspToXsDPNxSS87g0Oqmxp8lpumHGB2T1XOw14TeX0BuvItR7NWvdtGk_6KyuweVmRN6t-0_7KWyR1qtKX-Al8Rg_FJSZdq4ZKxIol9y85Qs_YgmehfA&__tn__=%2CmH-R&c[0]=AT2ZOAsOMTsghP7DwPbur9NT0p9rMJjPolCm83yzjAZOjcrSWh57sOVHJupnhBTBxLeJgcuD-f_HT7AqBwBAtlaLKy2e4u3FnfQcmS96X4l1OD0u86eAwOFGmw4ybDrnPvI9vOSE')"
+            @click="goToLink('https://www.oneroomstreaming.com/view/authorise.php?k=159675495071092')"
             class="q-mx-xs"
           />
           <q-tab
