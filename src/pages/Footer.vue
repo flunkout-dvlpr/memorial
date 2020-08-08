@@ -24,9 +24,9 @@
           />
 
           <q-tab
-            name="go fundeme"
+            name="gofundme"
             icon="ion-gift"
-            label="go fundeme"
+            label="gofundme"
             @click="goToLink('https://www.gofundme.com/f/fund-for-jose-solano?utm_source=customer&utm_campaign=p_cp+share-sheet&utm_medium=copy_link_mor')"
             class="q-mx-md"
           />
@@ -56,9 +56,9 @@
             class="q-mx-xs"
           />
           <q-tab
-            name="go fundeme"
+            name="gofundme"
             icon="ion-gift"
-            label="go fundeme"
+            label="gofundme"
             @click="goToLink('https://www.gofundme.com/f/fund-for-jose-solano?utm_source=customer&utm_campaign=p_cp+share-sheet&utm_medium=copy_link_mor')"
             class="q-mx-xs"
           />
