@@ -147,7 +147,6 @@ export default {
     },
     submitMemory () {
       this.addMemory = false
-      print(this.newMemory)
       return this.$axios.post('memory/add', this.newMemory).then((response) => {
         if (response.data.type === 'success') {
           this.memories.push(response.data.payload)
