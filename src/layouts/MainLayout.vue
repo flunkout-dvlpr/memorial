@@ -4,7 +4,7 @@
       <q-toolbar class="q-ma-xs">
         <q-toolbar-title class="text-center text-accent">
           <div class="text-h4 text-accent">Jose Solano Orea</div>
-          <div class="text-subtitle4 text-accent">1952-2020</div>
+          <div class="text-subtitle2 text-accent">02/07/1952 - 08/05/2020</div>
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
