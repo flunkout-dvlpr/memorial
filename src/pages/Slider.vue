@@ -10,6 +10,7 @@
       control-color="accent"
       padding
       arrows
+      :autoplay="2500"
       height="300px"
       class="bg-secondary text-accent shadow-1"
     >
