@@ -35,18 +35,17 @@ export default {
   name: 'Slider',
   data () {
     return {
-      slide: 1,
-      slides: [
-        {
-          id: 1,
-          imageLink: 'https://scontent.fhou1-2.fna.fbcdn.net/v/t1.0-9/117383277_2947683312010627_2696935639483858581_o.jpg?_nc_cat=106&_nc_sid=340051&_nc_ohc=Vlxw7yu-xTAAX9OI-DK&_nc_ht=scontent.fhou1-2.fna&oh=9ace5159a52cb2b7f7e1b9566ebf93d6&oe=5F54B2C8'
-        },
-        {
-          id: 2,
-          imageLink: 'https://scontent.fhou1-2.fna.fbcdn.net/v/t1.0-9/117294630_3358427504180712_2205901232245517998_n.jpg?_nc_cat=100&_nc_sid=8bfeb9&_nc_ohc=wSc0WH0xXR8AX_YPUIc&_nc_ht=scontent.fhou1-2.fna&oh=87c4b3461555f12e23f5956237010d83&oe=5F5239EE'
-        }
-      ]
+      slide: '1.jpg',
+      slides: []
     }
+  },
+  created () {
+    return this.$axios.get('images/get').then((response) => {
+      if (response.data.type === 'success') {
+        this.slides = response.data.payload
+        console.log(response.data.payload)
+      }
+    })
   }
 }
 </script>
