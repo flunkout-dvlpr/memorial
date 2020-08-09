@@ -2,7 +2,7 @@
   <q-page>
     <div class="q-pa-md fit row  justify-center  content-center">
       <q-btn outline class="q-mx-sm" color="primary" label="Share A Memory" @click="addMemory = true" />
-      <q-btn outline class="q-mx-sm" color="primary" label="Share An Image" @click="addImage = true" />
+      <q-btn outline class="q-mx-sm" color="primary" label="Share An Image" @click="uploadDialog" />
     </div>
     <div class="q-pa-md fit row  justify-center  content-center">
       <q-dialog
@@ -71,25 +71,6 @@
           </q-form>
         </q-card>
       </q-dialog>
-      <q-dialog
-        v-model="addImage"
-        persistent
-      >
-        <q-card style="width: 300px">
-          <q-card-section class="q-pa-none">
-            <q-uploader
-              style="max-width: 300px"
-              url="http://localhost:4444/upload"
-              label="Share Image"
-              accept=".jpg, image/*"
-            />
-          </q-card-section>
-          <q-card-actions align="right" class="bg-white text-primary">
-            <q-btn flat label="Cancel" v-close-popup @click="resetNewImage()" />
-            <q-btn flat label="Share" @click="submitImage()" />
-          </q-card-actions>
-        </q-card>
-      </q-dialog>
     </div>
     <div class="card-container row q-gutter-sm items-stretch flex-center">
       <q-card
@@ -115,13 +96,14 @@
 </template>
 
 <script>
+import UploadImageDialog from 'components/UploadImageDialog'
 export default {
   name: 'Cards',
   data () {
     return {
       addMemory: false,
       addImage: false,
-      filesImages: null,
+      imageLink: null,
       newMemory: {
         title: null,
         first_name: null,
@@ -143,7 +125,7 @@ export default {
       }
     },
     resetNewImage () {
-      this.filesImages = null
+      this.imageLink = null
     },
     submitMemory () {
       this.addMemory = false
@@ -168,9 +150,32 @@ export default {
         message: 'Memory Submitted, Thank You!'
       })
     },
-    submitImage () {
-      this.addImage = false
-      this.filesImages = null
+    getImageLink () {
+      var postBody = {}
+      postBody.fileName = new Date().getTime()
+      console.log(postBody)
+      return this.$axios.post('images/add', postBody).then((response) => {
+        console.log(response)
+        if (response.data.type === 'success') {
+          console.log(response.data.payload.response)
+          this.imageLink = response.data.payload.response
+          this.addImage = true
+        }
+      })
+    },
+    uploadDialog () {
+      this.getImageLink().then(() => {
+        this.$q.dialog({
+          component: UploadImageDialog,
+          url: this.imageLink
+        }).onOk(() => {
+          console.log('OK')
+        }).onCancel(() => {
+          console.log('Cancel')
+        }).onDismiss(() => {
+          console.log('Called on OK or Cancel')
+        })
+      })
     }
   },
   created () {
